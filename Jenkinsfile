@@ -72,7 +72,7 @@ pipeline{
         stage("Apply the changes"){
             when{
                 expression{
-                    params.action == 'Apply'
+                    params.CHOICE == 'Apply'
                 }
             }
             steps{
@@ -82,7 +82,7 @@ pipeline{
         stage("Destroy the changes"){
             when{
                 expression{
-                    params.action == 'Destroy'
+                    params.CHOICE == 'Destroy'
                 }
             }
             steps{
