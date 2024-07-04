@@ -18,7 +18,7 @@ pipeline{
         //choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
 
         //password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
-        choice(name: 'CHOICE': ['Apply','Destroy'], description: 'Pick One Action')
+         choice(name: 'CHOICE', choices: ['Apply', 'Destroy'], description: 'Pick One Action')
     }
     environment{
         // set values use whenever you want in pipeline
