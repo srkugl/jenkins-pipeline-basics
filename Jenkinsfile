@@ -1,11 +1,21 @@
 pipeline{
     agent {
-        label 'nodejs'
+        label 'nodejs'  // run the build job in particular agent
     }
     stages{
-        stage("Greeting"){
+        stage("Build"){
             steps{
-                echo "Hello World!"
+                echo "Build the app"
+            }
+        }
+        stage("upload artifact"){
+            steps{
+                echo "Upload the artifact"
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "Deploy the app"
             }
         }
     }
