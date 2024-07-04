@@ -44,6 +44,7 @@ pipeline{
         }
         stage("Accssing Parameters into pipeline"){
             steps{
+                echo "Hello World!"
                 // echo "Hello ${params.PERSON}"
 
                 // echo "Biography: ${params.BIOGRAPHY}"
