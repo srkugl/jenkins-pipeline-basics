@@ -4,7 +4,7 @@ pipeline{
     }
     options { // set timeout for jobs
         // Timeout counter starts AFTER agent is allocated
-        timeout(time: 10, unit: 'SECONDS')
+        //timeout(time: 10, unit: 'SECONDS')
         disableConcurrentBuilds() // disabling concurrent builds at a time same job will not run
         ansiColor('xterm')
     }
