@@ -9,15 +9,16 @@ pipeline{
         ansiColor('xterm')
     }
     parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        //string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
 
-        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        //text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
 
-        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        //booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
 
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        //choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
 
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+        //password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+        choice(name: 'CHOICE': ['Apply','Destroy'], description: 'Pick One Action')
     }
     environment{
         // set values use whenever you want in pipeline
@@ -43,15 +44,15 @@ pipeline{
         }
         stage("Accssing Parameters into pipeline"){
             steps{
-                echo "Hello ${params.PERSON}"
+                // echo "Hello ${params.PERSON}"
 
-                echo "Biography: ${params.BIOGRAPHY}"
+                // echo "Biography: ${params.BIOGRAPHY}"
 
-                echo "Toggle: ${params.TOGGLE}"
+                // echo "Toggle: ${params.TOGGLE}"
 
-                echo "Choice: ${params.CHOICE}"
+                // echo "Choice: ${params.CHOICE}"
 
-                echo "Password: ${params.PASSWORD}"
+                // echo "Password: ${params.PASSWORD}"
             }
         }
         stage("PrintEnv"){
@@ -65,6 +66,26 @@ pipeline{
             }
             steps{
                 sh 'printenv'
+            }
+        }
+        stage("Apply the changes"){
+            when{
+                expression{
+                    params.action == 'Apply'
+                }
+            }
+            steps{
+                echo "terraform apply"
+            }
+        }
+        stage("Destroy the changes"){
+            when{
+                expression{
+                    params.action == 'Destroy'
+                }
+            }
+            steps{
+                echo "terraform destroy"
             }
         }
     }
