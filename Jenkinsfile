@@ -6,6 +6,7 @@ pipeline{
         // Timeout counter starts AFTER agent is allocated
         timeout(time: 10, unit: 'SECONDS')
         disableConcurrentBuilds() // disabling concurrent builds at a time same job will not run
+        ansiColor('xterm')
     }
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
@@ -62,6 +63,9 @@ pipeline{
     post { 
         always { 
             echo 'I will always say Hello again!'
+            script{
+                deleteDir()
+            }
         }
     }
 }
