@@ -18,6 +18,11 @@ pipeline{
 
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
+    environment{
+        // set values use whenever you want in pipeline
+        DEPLOY_TO = 'PROD'
+        Greeting = 'Hello'
+    }
 
     stages{
         stage("Build"){
@@ -46,6 +51,11 @@ pipeline{
                 echo "Choice: ${params.CHOICE}"
 
                 echo "Password: ${params.PASSWORD}"
+            }
+        }
+        stage("PrintEnv"){
+            steps{
+                sh 'printenv'
             }
         }
     }
