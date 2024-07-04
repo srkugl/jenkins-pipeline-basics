@@ -55,6 +55,14 @@ pipeline{
             }
         }
         stage("PrintEnv"){
+              input { // prompts the user acceptence
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
             steps{
                 sh 'printenv'
             }
@@ -63,7 +71,7 @@ pipeline{
     post { 
         always { 
             echo 'I will always say Hello again!'
-                deleteDir()
+                deleteDir() // deletes build folder after build completion
         }
     }
 }
